@@ -22,20 +22,19 @@ jQuery(function($){
   console.log("Prev "+prevIndex);
   console.log("Next "+nextIndex);
 
+  //Previous Arrow Click
   $prev.click( function() {
     currentIndex = prevIndex;
     getCurrentPic();
     updateIndexes();
   });
+  //Next Arrow Click
   $next.click(function() {
     currentIndex = nextIndex;
     getCurrentPic();
     updateIndexes();
   });
-
-
-
-
+  //Image Gallery Image click
   $("div.project-gallery img").click(function(){
     $thumb = $(this);
     currentIndex = $gallery.index($thumb);
@@ -43,12 +42,15 @@ jQuery(function($){
     updateIndexes();
   });
 
+  //Grab the pic of the current index
   function getCurrentPic() {
     $pic.fadeOut('fast', function() {
       $pic.attr( "src", $( $gallery[ currentIndex ] ).attr('src') ).fadeIn('fast');
     });
   }
 
+  //Update prev and next clicks.
+  //Make sure indexes are in the bounds of the array.
   function updateIndexes() {
     prevIndex = currentIndex - 1;
     nextIndex = currentIndex + 1;
